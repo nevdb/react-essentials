@@ -29,12 +29,12 @@ function Header() {
   );
 }
 
-function CoreConcept(props) {
+function CoreConcept({ image, title, description }) {
   return (
     <li>
-      <img class="w-100" src={props.img} alt={props.title} />
-      <h3>{props.title}</h3>
-      <p>{props.description}</p>
+      <img class="w-100" src={image} alt={title} />
+      <h3>{title}</h3>
+      <p>{description}</p>
     </li>
   );
 }
@@ -53,21 +53,9 @@ function App() {
 
         <h2>Core Concepts</h2>
         <ul class="flex gap-4">
-          <CoreConcept
-            img={CORE_CONCEPTS[0].image}
-            title={CORE_CONCEPTS[0].title}
-            description={CORE_CONCEPTS[0].description}
-          />
-          <CoreConcept
-            img={CORE_CONCEPTS[1].image}
-            title={CORE_CONCEPTS[1].title}
-            description={CORE_CONCEPTS[1].description}
-          />
-          <CoreConcept
-            img={CORE_CONCEPTS[2].image}
-            title={CORE_CONCEPTS[2].title}
-            description={CORE_CONCEPTS[2].description}
-          />
+          <CoreConcept {...CORE_CONCEPTS[0]} />
+          <CoreConcept {...CORE_CONCEPTS[1]} />
+          <CoreConcept {...CORE_CONCEPTS[2]} />
         </ul>
       </div>
     </>
