@@ -1,12 +1,18 @@
 import { useState } from "react";
 import "./App.css";
-import { CORE_CONCEPTS } from "./data";
+import { CORE_CONCEPTS, EXAMPLES } from "./data";
 import Header from "./components/Header";
 import CoreConcept from "./components/CoreConcept";
 import TabButton from "./components/TabButton";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [selectedTopic, setSelectedTopic] = useState("components");
+
+  function handleClick(selectedButton) {
+    setSelectedTopic(selectedButton);
+    console.log(selectedTopic);
+  }
 
   return (
     <>
@@ -28,11 +34,21 @@ function App() {
         <section id="examples" class="my-20">
           <h2>Examples</h2>
           <menu class="flex justify-center">
-            <TabButton>Components</TabButton>
-            <TabButton>JSX</TabButton>
-            <TabButton>Props</TabButton>
-            <TabButton>State</TabButton>
+            <TabButton onSelect={() => handleClick("components")}>
+              Components
+            </TabButton>
+            <TabButton onSelect={() => handleClick("jsx")}>JSX</TabButton>
+            <TabButton onSelect={() => handleClick("props")}>Props</TabButton>
+            <TabButton onSelect={() => handleClick("state")}>State</TabButton>
           </menu>
+
+          <div>
+            <h3>{EXAMPLES[selectedTopic].title}</h3>
+            <p>{EXAMPLES[selectedTopic].description}</p>
+            <code>
+              <pre>{EXAMPLES[selectedTopic].code}</pre>
+            </code>
+          </div>
         </section>
       </div>
     </>
